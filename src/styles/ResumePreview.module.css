@@ -1,0 +1,456 @@
+/* Base styles for all templates */
+.resumePreview {
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  overflow-y: auto;
+}
+
+.previewTitle {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 2px solid #4a90e2;
+  padding-bottom: 0.5rem;
+}
+
+.previewContainer {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  min-height: 800px;
+}
+
+/* Default Template Styles */
+.defaultTemplate {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  line-height: 1.5;
+}
+
+.defaultTemplate .header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.defaultTemplate .name {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.defaultTemplate .contactInfo {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
+
+.defaultTemplate .section {
+  margin-bottom: 1.5rem;
+}
+
+.defaultTemplate .sectionTitle {
+  color: #2c3e50;
+  border-bottom: 2px solid #4a90e2;
+  padding-bottom: 0.3rem;
+  margin-bottom: 1rem;
+}
+
+.defaultTemplate .summary {
+  font-style: italic;
+  color: #555;
+  text-align: left;
+  line-height: 1.6;
+}
+
+.defaultTemplate .educationItem,
+.defaultTemplate .experienceItem {
+  margin-bottom: 1.2rem;
+  position: relative;
+}
+
+.defaultTemplate .educationHeader,
+.defaultTemplate .experienceHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.defaultTemplate .educationLeft,
+.defaultTemplate .experienceLeft {
+  flex: 1;
+}
+
+.defaultTemplate .educationDegree,
+.defaultTemplate .experiencePosition {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #2c3e50;
+  margin-bottom: 0.2rem;
+}
+
+.defaultTemplate .educationDates,
+.defaultTemplate .experienceDates {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  text-align: right;
+  min-width: 140px;
+}
+
+.defaultTemplate .educationInstitution,
+.defaultTemplate .experienceCompany {
+  font-weight: 500;
+  color: #34495e;
+  margin-bottom: 0.3rem;
+}
+
+.defaultTemplate .educationField {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+.defaultTemplate .educationDescription,
+.defaultTemplate .experienceDescription {
+  color: #555;
+  font-size: 0.95rem;
+  text-align: left;
+  line-height: 1.5;
+  margin-top: 0.5rem;
+}
+
+.defaultTemplate .skillsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.defaultTemplate .skillItem {
+  background: #f3f7ff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.9rem;
+}
+
+.defaultTemplate .skillName {
+  font-weight: 500;
+}
+
+.defaultTemplate .skillLevel {
+  color: #7f8c8d;
+  font-size: 0.8rem;
+  margin-left: 0.3rem;
+}
+
+/* Modern Template Styles */
+.modernTemplate {
+  display: flex;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  line-height: 1.5;
+}
+
+.modernTemplate .modernLeftColumn {
+  flex: 1;
+  background: #2c3e50;
+  color: white;
+  padding: 1.5rem;
+}
+
+.modernTemplate .modernRightColumn {
+  flex: 2;
+  padding: 1.5rem;
+}
+
+.modernTemplate .modernHeader {
+  margin-bottom: 1.5rem;
+}
+
+.modernTemplate .modernName {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.modernTemplate .modernContact div {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.modernTemplate .modernSection {
+  margin-bottom: 1.5rem;
+}
+
+.modernTemplate .modernSectionTitle {
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  color: #ecf0f1;
+  border-bottom: 1px solid #ecf0f1;
+  padding-bottom: 0.3rem;
+}
+
+.modernTemplate .modernRightColumn .modernSectionTitle {
+  color: #2c3e50;
+  border-bottom: 1px solid #2c3e50;
+}
+
+.modernTemplate .modernSummary {
+  font-style: italic;
+  text-align: left;
+  line-height: 1.6;
+}
+
+.modernTemplate .modernSkills {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.modernTemplate .modernSkillItem {
+  margin-bottom: 0.8rem;
+}
+
+.modernTemplate .modernSkillName {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.modernTemplate .modernSkillBar {
+  height: 6px;
+  background: #34495e;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.modernTemplate .modernSkillLevel {
+  height: 100%;
+  background: #ecf0f1;
+}
+
+.modernTemplate .modernEducationItem,
+.modernTemplate .modernExperienceItem {
+  margin-bottom: 1.2rem;
+}
+
+.modernTemplate .modernEducationHeader,
+.modernTemplate .modernExperienceHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.3rem;
+}
+
+.modernTemplate .modernEducationDegree,
+.modernTemplate .modernExperiencePosition {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #2c3e50;
+  margin-bottom: 0.2rem;
+}
+
+.modernTemplate .modernEducationDates,
+.modernTemplate .modernExperienceDates {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  text-align: right;
+  min-width: 140px;
+}
+
+.modernTemplate .modernEducationInstitution,
+.modernTemplate .modernExperienceCompany {
+  font-weight: 500;
+  color: #34495e;
+  margin-bottom: 0.3rem;
+}
+
+.modernTemplate .modernEducationField {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+.modernTemplate .modernEducationDescription,
+.modernTemplate .modernExperienceDescription {
+  color: #555;
+  font-size: 0.95rem;
+  text-align: left;
+  line-height: 1.5;
+  margin-top: 0.5rem;
+}
+
+/* Classic Template Styles */
+.classicTemplate {
+  font-family: 'Georgia', serif;
+  color: #333;
+  line-height: 1.5;
+}
+
+.classicTemplate .classicHeader {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.classicTemplate .classicName {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.classicTemplate .classicContact {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
+
+.classicTemplate .classicSection {
+  margin-bottom: 1.5rem;
+}
+
+.classicTemplate .classicSectionTitle {
+  color: #2c3e50;
+  border-bottom: 1px solid #4a90e2;
+  padding-bottom: 0.3rem;
+  margin-bottom: 1rem;
+  font-variant: small-caps;
+  letter-spacing: 1px;
+}
+
+.classicTemplate .classicSummary {
+  font-style: italic;
+  color: #555;
+  text-align: left;
+  line-height: 1.6;
+}
+
+.classicTemplate .classicTwoColumn {
+  display: flex;
+  gap: 2rem;
+}
+
+.classicTemplate .classicLeft {
+  flex: 2;
+}
+
+.classicTemplate .classicRight {
+  flex: 1;
+}
+
+.classicTemplate .classicExperienceItem,
+.classicTemplate .classicEducationItem {
+  margin-bottom: 1.2rem;
+}
+
+.classicTemplate .classicExperienceHeader,
+.classicTemplate .classicEducationHeader {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.classicTemplate .classicExperienceDates,
+.classicTemplate .classicEducationDates {
+  min-width: 120px;
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  padding-right: 1rem;
+}
+
+.classicTemplate .classicExperienceDetails,
+.classicTemplate .classicEducationDetails {
+  flex: 1;
+}
+
+.classicTemplate .classicExperiencePosition,
+.classicTemplate .classicEducationDegree {
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 0.2rem;
+}
+
+.classicTemplate .classicExperienceCompany,
+.classicTemplate .classicEducationInstitution {
+  font-weight: 500;
+  color: #34495e;
+  margin-bottom: 0.3rem;
+}
+
+.classicTemplate .classicEducationField {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.classicTemplate .classicExperienceDescription,
+.classicTemplate .classicEducationDescription {
+  color: #555;
+  font-size: 0.95rem;
+  text-align: left;
+  line-height: 1.5;
+  margin-left: 120px;
+}
+
+.classicTemplate .classicSkills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.classicTemplate .classicSkillItem {
+  background: #f3f7ff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 3px;
+  font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .modernTemplate {
+    flex-direction: column;
+  }
+  
+  .classicTemplate .classicTwoColumn {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .previewContainer {
+    padding: 1rem;
+  }
+  
+  .defaultTemplate .educationHeader,
+  .defaultTemplate .experienceHeader,
+  .modernTemplate .modernEducationHeader,
+  .modernTemplate .modernExperienceHeader {
+    flex-direction: column;
+  }
+  
+  .defaultTemplate .educationDates,
+  .defaultTemplate .experienceDates,
+  .modernTemplate .modernEducationDates,
+  .modernTemplate .modernExperienceDates {
+    text-align: left;
+    margin-top: 0.3rem;
+  }
+  
+  .classicTemplate .classicExperienceHeader,
+  .classicTemplate .classicEducationHeader {
+    flex-direction: column;
+  }
+  
+  .classicTemplate .classicExperienceDescription,
+  .classicTemplate .classicEducationDescription {
+    margin-left: 0;
+  }
+}
