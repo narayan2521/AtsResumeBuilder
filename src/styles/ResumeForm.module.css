@@ -123,3 +123,602 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Suggestion Button Styles */
+.suggestionButton {
+  background-color: #4a6fa5;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 10px;
+  transition: background-color 0.2s;
+}
+
+.suggestionButton:hover {
+  background-color: #3a5a8c;
+}
+
+.suggestionButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.smallSuggestionButton {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 10px;
+  transition: all 0.2s;
+}
+
+.smallSuggestionButton:hover {
+  background-color: #e0e0e0;
+}
+
+.smallSuggestionButton:disabled {
+  background-color: #f5f5f5;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+/* Suggestion Box */
+.suggestionBox {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 12px;
+  margin: 12px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.suggestionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.suggestionHeader span {
+  font-weight: 600;
+  color: #343a40;
+  font-size: 0.95rem;
+}
+
+.suggestionList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.suggestionItem {
+  background-color: white;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  padding: 12px;
+  transition: all 0.2s ease;
+}
+
+.suggestionItem:hover {
+  border-color: #4dabf7;
+  box-shadow: 0 0 0 1px #4dabf7;
+}
+
+.suggestionText {
+  color: #212529;
+  margin-bottom: 10px;
+  white-space: pre-line;
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+/* Buttons */
+.applyButton {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85em;
+  transition: background-color 0.2s;
+  width: 100%;
+  font-weight: 500;
+}
+
+.applyButton:hover {
+  background-color: #3e8e41;
+}
+
+.dismissButton {
+  background-color: #f1f3f5;
+  color: #495057;
+  border: 1px solid #ced4da;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8em;
+  transition: all 0.2s;
+}
+
+.dismissButton:hover {
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+}
+
+/* Loading indicator */
+.loading {
+  color: #666;
+  font-style: italic;
+  margin: 8px 0;
+  font-size: 0.9em;
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.loading:before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #4CAF50;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .suggestionItem {
+    padding: 10px;
+  }
+  
+  .suggestionText {
+    font-size: 0.85rem;
+  }
+  
+  .applyButton, .dismissButton {
+    font-size: 0.8em;
+    padding: 5px 10px;
+  }
+}
+
+/* Add button */
+.addButton {
+  background-color: #f8f9fa;
+  color: #495057;
+  border: 1px dashed #adb5bd;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  width: 100%;
+  margin-top: 1rem;
+  transition: all 0.2s;
+}
+
+.addButton:hover {
+  background-color: #e9ecef;
+  border-color: #6c757d;
+}
+
+/* Suggestion Actions */
+.suggestionActions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+/* Loading Animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loadingSpinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid #fff;
+  border-radius: 50%;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* Form inputs */
+.inputGroup {
+  margin-bottom: 1rem;
+}
+
+.inputGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #495057;
+}
+
+.inputGroup textarea,
+.inputGroup input[type="text"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.inputGroup textarea:focus,
+.inputGroup input[type="text"]:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Input with button container */
+.inputWithButton {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+/* Generate button */
+.generateButton {
+  background-color: #4a6cf7;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px;
+}
+
+.generateButton:hover {
+  background-color: #3a5ce9;
+  transform: translateY(-1px);
+}
+
+.generateButton:active {
+  transform: translateY(0);
+}
+
+.generateButton:disabled {
+  background-color: #a8b2d1;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Adjust textarea to work with the button */
+.inputWithButton textarea {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .inputWithButton {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .inputWithButton textarea {
+    flex: 1;
+    margin-bottom: 0;
+  }
+  
+  .generateButton {
+    margin-top: 1.5rem; /* Align with the first line of textarea */
+    height: fit-content;
+  }
+}
+
+/* Existing styles for suggestion box */
+.suggestionBox {
+  margin-top: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.suggestionHeader {
+  background-color: #f8fafc;
+  padding: 10px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.suggestionHeader h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #334155;
+}
+
+.suggestionList {
+  padding: 12px;
+  background-color: white;
+}
+
+.suggestionItem {
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  transition: all 0.2s ease;
+}
+
+.suggestionItem:last-child {
+  margin-bottom: 0;
+}
+
+.suggestionItem:hover {
+  border-color: #c7d2fe;
+  background-color: #f8fafc;
+}
+
+.suggestionText {
+  margin: 0 0 10px 0;
+  color: #334155;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+.suggestionActions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+/* Suggestion Container */
+.suggestionContainer {
+  margin-top: 1.5rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9eef5;
+  background: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.suggestionContainer:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Navigation Bar */
+.suggestionNavigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.875rem 1.25rem;
+  background: linear-gradient(135deg, #f8fafd 0%, #f1f5f9 100%);
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 0.9rem;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.navButtons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  padding: 0.25rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.navButton {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #4b5563;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.navButton:hover:not(:disabled) {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+  color: #3b82f6;
+  transform: translateY(-1px);
+}
+
+.navButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.navButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #f9fafb;
+}
+
+.navCounter {
+  font-size: 0.85rem;
+  color: #64748b;
+  min-width: 50px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Suggestion Content */
+.suggestionBox {
+  padding: 1.5rem;
+  background: #ffffff;
+  position: relative;
+}
+
+.suggestionContent {
+  white-space: pre-line;
+  line-height: 1.7;
+  color: #1e293b;
+  font-size: 0.95rem;
+  position: relative;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  border-left: 4px solid #3b82f6;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+/* Action Buttons */
+.suggestionActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding-top: 1.25rem;
+  margin-top: 1rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.applyButton {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  border: none;
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.applyButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(79, 70, 229, 0.25);
+  background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
+}
+
+.applyButton:active {
+  transform: translateY(0);
+}
+
+.dismissButton {
+  background: #ffffff;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.dismissButton:hover {
+  background-color: #f8fafc;
+  color: #475569;
+  border-color: #cbd5e1;
+}
+
+/* Loading State */
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.loadingSuggestion {
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.loadingText {
+  color: #64748b;
+  font-size: 0.9rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .suggestionBox {
+    padding: 1.25rem 1rem;
+  }
+  
+  .suggestionActions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .applyButton,
+  .dismissButton {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .navButtons {
+    padding: 0.2rem;
+  }
+  
+  .navButton {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Animation for suggestion change */
+@keyframes fadeIn {
+  from { opacity: 0.6; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.suggestionContent {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Badge for suggestion type */
+.suggestionTypeBadge {
+  position: absolute;
+  top: -12px;
+  left: 16px;
+  background: #3b82f6;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+}

@@ -1,21 +1,172 @@
- 
-
-// src/ResumeForm.jsx
-import React from 'react';
+ // src/component/ResumeForm.jsx
+import React, { useState, useCallback } from 'react';
 import styles from '../styles/ResumeForm.module.css';
+import { generateSummarySuggestion, generateExperienceSuggestion } from '../utils/geminiService';
+
+// Debounce function to limit API calls
+const debounce = (func, wait) => {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};
 
 const ResumeForm = ({ resumeData, setResumeData }) => {
+  const [loading, setLoading] = useState({});
+  const [suggestions, setSuggestions] = useState({});
+  const [activeSuggestion, setActiveSuggestion] = useState({});
+
+  const handleGenerateSummary = async () => {
+    if (!resumeData.summary?.trim()) {
+      alert('Please enter some text in the summary field first');
+      return;
+    }
+    
+    try {
+      setLoading(prev => ({ ...prev, summary: true }));
+      const suggestionList = await generateSummarySuggestion(resumeData.summary);
+      setSuggestions(prev => ({ ...prev, summary: suggestionList }));
+      setActiveSuggestion(prev => ({ ...prev, summary: 0 })); // Select first suggestion by default
+    } catch (error) {
+      console.error('Error generating summary suggestion:', error);
+      setSuggestions(prev => ({ ...prev, summary: ["Error generating suggestions. Please try again."] }));
+    } finally {
+      setLoading(prev => ({ ...prev, summary: false }));
+    }
+  };
+
+  const handleGenerateExperience = async (exp, index) => {
+    if (!exp.description?.trim()) {
+      alert('Please enter some text in the description field first');
+      return;
+    }
+    
+    try {
+      setLoading(prev => ({ ...prev, [`exp-${index}`]: true }));
+      const suggestionList = await generateExperienceSuggestion(
+        exp.position || 'this position',
+        exp.company || 'this company',
+        exp.description
+      );
+      
+      setSuggestions(prev => ({
+        ...prev,
+        [`exp-${index}`]: suggestionList
+      }));
+      setActiveSuggestion(prev => ({ ...prev, [`exp-${index}`]: 0 })); // Select first suggestion by default
+    } catch (error) {
+      console.error('Error generating experience suggestion:', error);
+      setSuggestions(prev => ({
+        ...prev,
+        [`exp-${index}`]: ["Error generating suggestions. Please try again."]
+      }));
+    } finally {
+      setLoading(prev => ({ ...prev, [`exp-${index}`]: false }));
+    }
+  };
+
+  const applySuggestion = (field, value, index = null) => {
+    if (index === null) {
+      setResumeData({
+        ...resumeData,
+        [field]: value
+      });
+    } else {
+      const updatedSection = [...resumeData[field]];
+      updatedSection[index] = {
+        ...updatedSection[index],
+        description: value
+      };
+      
+      setResumeData({
+        ...resumeData,
+        [field]: updatedSection
+      });
+    }
+  };
+
+  const renderSuggestionList = (suggestionKey, field, index = null) => {
+    const suggestionList = suggestions[suggestionKey];
+    if (!suggestionList || !Array.isArray(suggestionList) || suggestionList.length === 0) {
+      return null;
+    }
+
+    const currentActive = activeSuggestion[suggestionKey] || 0;
+
+    return (
+      <div className={styles.suggestionContainer}>
+        <div className={styles.suggestionNavigation}>
+          <span>Suggestions ({suggestionList.length}):</span>
+          <div className={styles.navButtons}>
+            <button 
+              onClick={() => setActiveSuggestion(prev => ({
+                ...prev,
+                [suggestionKey]: Math.max(0, (prev[suggestionKey] || 0) - 1)
+              }))}
+              disabled={currentActive === 0}
+              className={styles.navButton}
+            >
+              &lt;
+            </button>
+            <span>{currentActive + 1} / {suggestionList.length}</span>
+            <button 
+              onClick={() => setActiveSuggestion(prev => ({
+                ...prev,
+                [suggestionKey]: Math.min(suggestionList.length - 1, (prev[suggestionKey] || 0) + 1)
+              }))}
+              disabled={currentActive === suggestionList.length - 1}
+              className={styles.navButton}
+            >
+              &gt;
+            </button>
+          </div>
+        </div>
+        
+        <div className={styles.suggestionBox}>
+          <div className={styles.suggestionContent}>
+            {suggestionList[currentActive]}
+          </div>
+          <div className={styles.suggestionActions}>
+            <button
+              onClick={() => applySuggestion(field, suggestionList[currentActive], index)}
+              className={styles.applyButton}
+            >
+              Use This Suggestion
+            </button>
+            <button 
+              onClick={() => {
+                const updated = { ...suggestions };
+                delete updated[suggestionKey];
+                setSuggestions(updated);
+                const updatedActive = { ...activeSuggestion };
+                delete updatedActive[suggestionKey];
+                setActiveSuggestion(updatedActive);
+              }}
+              className={styles.dismissButton}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const handleInputChange = (e, section, index = null) => {
     const { name, value } = e.target;
     
+    // Update the form data
     if (index === null) {
-      // Update simple fields (name, email, etc.)
       setResumeData({
         ...resumeData,
         [name]: value
       });
     } else {
-      // Update array fields (education, experience, skills)
       const updatedSection = [...resumeData[section]];
       updatedSection[index] = {
         ...updatedSection[index],
@@ -109,10 +260,24 @@ const ResumeForm = ({ resumeData, setResumeData }) => {
         <div className={styles.section}>
           <h3>Professional Summary</h3>
           <div className={styles.formGroup}>
-            <textarea id="summary" name="summary" value={resumeData.summary} 
-                      onChange={(e) => handleInputChange(e, 'personal')} 
-                      placeholder="Experienced software developer with 5+ years in web development..."
-                      rows="4" />
+            <div className={styles.suggestionContainer}>
+              <textarea 
+                id="summary" 
+                name="summary" 
+                value={resumeData.summary} 
+                onChange={(e) => handleInputChange(e, 'personal')} 
+                placeholder="Experienced software developer with 5+ years in web development..."
+                rows="4" 
+              />
+              <button 
+                onClick={handleGenerateSummary}
+                disabled={loading.summary}
+                className={styles.generateButton}
+              >
+                {loading.summary ? 'Generating...' : 'Generate Suggestions'}
+              </button>
+              {suggestions.summary && renderSuggestionList('summary', 'summary')}
+            </div>
           </div>
         </div>
 
@@ -221,11 +386,25 @@ const ResumeForm = ({ resumeData, setResumeData }) => {
               </div>
               
               <div className={styles.formGroup}>
-                <label>Description *</label>
-                <textarea value={exp.description} 
-                          onChange={(e) => handleInputChange(e, 'experience', index)}
-                          name="description" placeholder="Describe your responsibilities and achievements..."
-                          rows="4" required />
+                <div className={styles.suggestionContainer}>
+                  <label>Description *</label>
+                  <textarea 
+                    value={exp.description} 
+                    onChange={(e) => handleInputChange(e, 'experience', index)}
+                    name="description" 
+                    placeholder="Describe your responsibilities and achievements..."
+                    rows="4" 
+                    required 
+                  />
+                  <button 
+                    onClick={() => handleGenerateExperience(exp, index)}
+                    disabled={loading[`exp-${index}`]}
+                    className={styles.generateButton}
+                  >
+                    {loading[`exp-${index}`] ? 'Generating...' : 'Generate Suggestions'}
+                  </button>
+                  {suggestions[`exp-${index}`] && renderSuggestionList(`exp-${index}`, 'experience', index)}
+                </div>
               </div>
             </div>
           ))}
